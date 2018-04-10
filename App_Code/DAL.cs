@@ -22,7 +22,7 @@ public class DAL
     }
 
     /* Grava os dados da PÁGINA 1 */
-    public string SalvarPagina1(Candidato candidato)
+    public string SalvarPagina1(Candidato candidato, Curso curso)
     {
         conn.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConexaoBanco"].ConnectionString;
 
@@ -37,7 +37,14 @@ public class DAL
                                             DTNASCIMENTO,
                                             EMAIL,
                                             TELEFONE1,
-                                            DATAINSCRICAO)
+                                            DATAINSCRICAO,
+                                            SEXO,
+                                            CODCURSO,
+                                            FORMAINGRESSO,
+                                            IDPROCSEL,
+                                            CODTIPOCURSO,
+                                            IDHABILITACAOFILIAL,
+                                            CODFILIAL)
                                      VALUES
                                            (@CODCOLIGADA,
                                             @NOME,
@@ -47,7 +54,14 @@ public class DAL
                                             @DTNASCIMENTO,
                                             @EMAIL,
                                             @TELEFONE1,
-                                            @DATAINSCRICAO); SELECT SCOPE_IDENTITY()";
+                                            @DATAINSCRICAO,
+                                            @SEXO,
+                                            @CODCURSO,
+                                            @FORMAINGRESSO,
+                                            @IDPROCSEL,
+                                            @CODTIPOCURSO,
+                                            @IDHABILITACAOFILIAL,
+                                            @CODFILIAL); SELECT SCOPE_IDENTITY()";
 
             cmd.Parameters.Clear();
             cmd.Parameters.AddWithValue("CODCOLIGADA", candidato.CodColigada);
@@ -59,6 +73,13 @@ public class DAL
             cmd.Parameters.AddWithValue("EMAIL", candidato.Email);
             cmd.Parameters.AddWithValue("TELEFONE1", candidato.Telefone);
             cmd.Parameters.AddWithValue("DATAINSCRICAO", DateTime.Now);
+            cmd.Parameters.AddWithValue("SEXO", candidato.Sexo);
+            cmd.Parameters.AddWithValue("CODCURSO", curso.Codigo);
+            cmd.Parameters.AddWithValue("FORMAINGRESSO", candidato.FormaIngresso);
+            cmd.Parameters.AddWithValue("IDPROCSEL", candidato.IdProcSel);
+            cmd.Parameters.AddWithValue("CODTIPOCURSO", curso.CodTipoCurso);
+            cmd.Parameters.AddWithValue("IDHABILITACAOFILIAL", curso.IdHabilitacaoFilial);
+            cmd.Parameters.AddWithValue("CODFILIAL", curso.CodFilial);
 
             cmd.CommandType = CommandType.Text;
             conn.Open();
@@ -82,56 +103,7 @@ public class DAL
     }
 
     /* Grava os dados da PÁGINA 2 */
-    public string SalvarPagina2(Candidato candidato, Curso curso)
-    {
-        conn.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConexaoBanco"].ConnectionString;
-
-        try
-        {
-            cmd.CommandText = @"UPDATE POLIS_VESTIBULAR_UNIJA_CANDIDATO
-                                   SET
-                                       CODCURSO = @CODCURSO,
-                                       FORMAINGRESSO = @FORMAINGRESSO,
-                                       IDPROCSEL = @IDPROCSEL,
-                                       CODTIPOCURSO = @CODTIPOCURSO,
-                                       IDHABILITACAOFILIAL = @IDHABILITACAOFILIAL,
-                                       CODFILIAL = @CODFILIAL
-
-                                 WHERE
-                                       CODIGOINSCRICAO = @CODIGOINSCRICAO";
-
-            cmd.Parameters.Clear();
-            cmd.Parameters.AddWithValue("CODCURSO", curso.Codigo);
-            cmd.Parameters.AddWithValue("FORMAINGRESSO", candidato.FormaIngresso);
-            cmd.Parameters.AddWithValue("IDPROCSEL", candidato.IdProcSel);
-            cmd.Parameters.AddWithValue("CODTIPOCURSO", curso.CodTipoCurso);
-            cmd.Parameters.AddWithValue("IDHABILITACAOFILIAL", curso.IdHabilitacaoFilial);
-            cmd.Parameters.AddWithValue("CODFILIAL", curso.CodFilial);
-            cmd.Parameters.AddWithValue("CODIGOINSCRICAO", candidato.CodigoInscricao);
-
-            cmd.CommandType = CommandType.Text;
-            conn.Open();
-            cmd.Connection = conn;
-
-            cmd.ExecuteNonQuery();
-        }
-        catch (Exception ex)
-        {
-            throw ex;
-        }
-        finally
-        {
-            if (conn.State == ConnectionState.Open)
-            {
-                conn.Close();
-            }
-        }
-
-        return candidato.CodigoInscricao;
-    }
-
-    /* Grava os dados da PÁGINA 3 */
-    public string SalvarPagina3(Candidato candidato)
+    public bool SalvarPagina2(Candidato candidato)
     {
         conn.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConexaoBanco"].ConnectionString;
 
@@ -143,7 +115,8 @@ public class DAL
                                        RUA = @RUA,
                                        NUMERO = @NUMERO,
                                        COMPLEMENTO = @COMPLEMENTO,
-                                       BAIRRO = @BAIRRO
+                                       BAIRRO = @BAIRRO,
+                                       GRAUINSTRUCAO = @GRAUINSTRUCAO
 
                                  WHERE
                                        CODIGOINSCRICAO = @CODIGOINSCRICAO";
@@ -154,148 +127,8 @@ public class DAL
             cmd.Parameters.AddWithValue("NUMERO", candidato.Numero);
             cmd.Parameters.AddWithValue("COMPLEMENTO", candidato.Complemento);
             cmd.Parameters.AddWithValue("BAIRRO", candidato.Bairro);
+            cmd.Parameters.AddWithValue("GRAUINSTRUCAO", candidato.Escolaridade);
             cmd.Parameters.AddWithValue("CODIGOINSCRICAO", candidato.CodigoInscricao);
-
-            cmd.CommandType = CommandType.Text;
-            conn.Open();
-            cmd.Connection = conn;
-
-            cmd.ExecuteNonQuery();
-        }
-        catch (Exception ex)
-        {
-            throw ex;
-        }
-        finally
-        {
-            if (conn.State == ConnectionState.Open)
-            {
-                conn.Close();
-            }
-        }
-
-        return candidato.CodigoInscricao;
-    }
-
-    /* Grava os dados da PÁGINA 4 */
-    public string SalvarPagina4(Candidato candidato)
-    {
-        conn.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConexaoBanco"].ConnectionString;
-
-        try
-        {
-            cmd.CommandText = @"UPDATE POLIS_VESTIBULAR_UNIJA_CANDIDATO
-                                   SET
-                                       CORRACA = @CORRACA,
-                                       ESTADOCIVIL = @ESTADOCIVIL,
-                                       NACIONALIDADE = @NACIONALIDADE,
-                                       SEXO = @SEXO,
-                                       CANHOTO = @CANHOTO
-
-                                 WHERE
-                                       CODIGOINSCRICAO = @CODIGOINSCRICAO";
-
-            cmd.Parameters.Clear();
-            cmd.Parameters.AddWithValue("CORRACA", candidato.CorRaca == string.Empty ? SqlString.Null : candidato.CorRaca);
-            cmd.Parameters.AddWithValue("ESTADOCIVIL", candidato.EstadoCivil == string.Empty ? SqlString.Null : candidato.EstadoCivil);
-            cmd.Parameters.AddWithValue("NACIONALIDADE", candidato.Nacionalidade == string.Empty ? SqlString.Null : candidato.Nacionalidade);
-            cmd.Parameters.AddWithValue("SEXO", candidato.Sexo == string.Empty ? SqlString.Null : candidato.Sexo);
-            cmd.Parameters.AddWithValue("CANHOTO", candidato.Canhoto == string.Empty ? SqlString.Null : candidato.Canhoto);
-            cmd.Parameters.AddWithValue("DEFICIENTEFISICO", candidato.NecessidadeFisica == 1 ? candidato.NecessidadeFisica : SqlInt32.Null);
-            cmd.Parameters.AddWithValue("DEFICIENTEAUDITIVO", candidato.NecessidadeAuditiva == 1 ? candidato.NecessidadeAuditiva : SqlInt32.Null);
-            cmd.Parameters.AddWithValue("DEFICIENTEVISUAL", candidato.NecessidadeVisual == 1 ? candidato.NecessidadeVisual : SqlInt32.Null);
-            cmd.Parameters.AddWithValue("DEFICIENTEMENTAL", candidato.NecessidadeMental == 1 ? candidato.NecessidadeMental : SqlInt32.Null);
-            cmd.Parameters.AddWithValue("RECURSOACESSIBILIDADE", candidato.NecessidadeRecursos != string.Empty ? candidato.NecessidadeRecursos : SqlString.Null);
-            cmd.Parameters.AddWithValue("ESPECIFICADEFICIENCIA", candidato.EspecificacaoNecessidade != string.Empty ? candidato.EspecificacaoNecessidade : SqlString.Null);
-            cmd.Parameters.AddWithValue("CODIGOINSCRICAO", candidato.CodigoInscricao);
-
-            cmd.CommandType = CommandType.Text;
-            conn.Open();
-            cmd.Connection = conn;
-
-            cmd.ExecuteNonQuery();
-        }
-        catch (Exception ex)
-        {
-            throw ex;
-        }
-        finally
-        {
-            if (conn.State == ConnectionState.Open)
-            {
-                conn.Close();
-            }
-        }
-
-        return candidato.CodigoInscricao;
-    }
-
-    /* Grava os dados da PÁGINA 5 */
-    public string SalvarPagina5(Candidato candidato)
-    {
-        conn.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConexaoBanco"].ConnectionString;
-
-        try
-        {
-            cmd.CommandText = @"UPDATE POLIS_VESTIBULAR_UNIJA_CANDIDATO
-                                   SET
-                                       GRAUINSTRUCAO = @GRAUINSTRUCAO,
-                                       ANOCONCLUSAOEM = @ANOCONCLUSAOEM,
-                                       FORMACAO = @FORMACAO,
-                                       NOMECOLEGIOEM = @NOMECOLEGIOEM,
-                                       ENSINOSUPERIOR = @ENSINOSUPERIOR
-
-                                 WHERE
-                                       CODIGOINSCRICAO = @CODIGOINSCRICAO";
-
-            cmd.Parameters.Clear();
-            cmd.Parameters.AddWithValue("GRAUINSTRUCAO", candidato.Escolaridade == string.Empty ? SqlString.Null : candidato.Escolaridade);
-            cmd.Parameters.AddWithValue("ANOCONCLUSAOEM", candidato.AnoConclusao == string.Empty ? SqlString.Null : candidato.AnoConclusao);
-            cmd.Parameters.AddWithValue("FORMACAO", candidato.Formacao == string.Empty ? SqlString.Null : candidato.Formacao);
-            cmd.Parameters.AddWithValue("NOMECOLEGIOEM", candidato.Escola == string.Empty ? SqlString.Null : candidato.Escola);
-            cmd.Parameters.AddWithValue("ENSINOSUPERIOR", candidato.EnsinoSuperior == string.Empty ? SqlString.Null : candidato.EnsinoSuperior);
-            cmd.Parameters.AddWithValue("CODIGOINSCRICAO", candidato.CodigoInscricao);
-
-            cmd.CommandType = CommandType.Text;
-            conn.Open();
-            cmd.Connection = conn;
-
-            cmd.ExecuteNonQuery();
-        }
-        catch (Exception ex)
-        {
-            throw ex;
-        }
-        finally
-        {
-            if (conn.State == ConnectionState.Open)
-            {
-                conn.Close();
-            }
-        }
-
-        return candidato.CodigoInscricao;
-    }
-
-    public bool GravarDisponibilidade(string codigoInscricao, int dia, string periodo)
-    {
-        conn.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConexaoBanco"].ConnectionString;
-
-        try
-        {
-            cmd.CommandText = @"INSERT INTO POLIS_VESTIBULAR_UNIJA_DISPONIBILIDADE
-                                           (CODIGOINSCRICAO,
-                                           DIA,
-                                           PERIODO)
-                                     VALUES
-                                           (@CODIGOINSCRICAO,
-                                           @DIA,
-                                           @PERIODO)";
-
-            cmd.Parameters.Clear();
-            cmd.Parameters.AddWithValue("CODIGOINSCRICAO", codigoInscricao);
-            cmd.Parameters.AddWithValue("DIA", dia);
-            cmd.Parameters.AddWithValue("PERIODO", periodo);
 
             cmd.CommandType = CommandType.Text;
             conn.Open();
@@ -433,50 +266,6 @@ public class DAL
         }
 
         return dt;
-    }
-
-    public Polo CarregarEnderecoPolo(Polo polo)
-    {
-        conn.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConexaoBanco"].ConnectionString;
-
-        try
-        {
-            cmd.CommandText = @"SELECT CIDADE, LOGRADOURO, NUMERO, BAIRRO, CEP, TELEFONE FROM POLIS_VESTIBULAR_UNIJA_POLO (NOLOCK) WHERE CODPOLO = @CODPOLO";
-
-            cmd.Parameters.Clear();
-            cmd.Parameters.AddWithValue("CODPOLO", polo.CodPolo);
-
-            cmd.CommandType = CommandType.Text;
-            conn.Open();
-            cmd.Connection = conn;
-
-            SqlDataReader reader = cmd.ExecuteReader();
-
-            if (reader.Read())
-            {
-                polo.Cidade = reader["CIDADE"].ToString();
-                polo.Logradouro = reader["LOGRADOURO"].ToString();
-                polo.Numero = reader["NUMERO"].ToString();
-                polo.Bairro = reader["BAIRRO"].ToString();
-                polo.CEP = reader["CEP"].ToString();
-                polo.Telefone = reader["TELEFONE"].ToString();
-            }
-
-            reader.Close();
-        }
-        catch (Exception ex)
-        {
-            throw ex;
-        }
-        finally
-        {
-            if (conn.State == ConnectionState.Open)
-            {
-                conn.Close();
-            }
-        }
-
-        return polo;
     }
 
     public DataTable CarregarInscritos(Polo polo)

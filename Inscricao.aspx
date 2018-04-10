@@ -71,48 +71,70 @@
                             <asp:TextBox ID="txtUF" runat="server" CssClass="form-control" MaxLength="2"></asp:TextBox>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-4 col-xs-8">
+                    <%--<div class="row">
+                        <div class="col-md-4 col-xs-12">
                             CPF
                         </div>
-                        <div class="col-md-8 col-xs-12">
+                        <div class="col-md-3 col-xs-12">
                             <asp:TextBox ID="txtCPF" runat="server" CssClass="form-control" MaxLength="14"></asp:TextBox>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4 col-xs-8">
+                        <div class="col-md-2 col-xs-12">
                             Data de nascimento
                         </div>
-                        <div class="col-md-8 col-xs-12">
+                        <div class="col-md-3 col-xs-12">
+                            <asp:TextBox ID="txtDataNascimento" runat="server" CssClass="form-control" MaxLength="10"></asp:TextBox>
+                        </div>
+                    </div>--%>
+
+                    <div class="row">
+                        <div class="col-md-4 col-xs-12">
+                            CPF/Data de nascimento
+                        </div>
+                        <div class="col-md-4 col-xs-4">
+                            <asp:TextBox ID="txtCPF" runat="server" CssClass="form-control" MaxLength="14"></asp:TextBox>
+                        </div>
+                        <div class="col-md-4 col-xs-8">
                             <asp:TextBox ID="txtDataNascimento" runat="server" CssClass="form-control" MaxLength="10"></asp:TextBox>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-4 col-xs-8">
+
+                    <%--<div class="row">
+                        <div class="col-md-4 col-xs-12">
                             E-mail
                         </div>
-                        <div class="col-md-8 col-xs-12">
+                        <div class="col-md-3 col-xs-12">
                             <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" MaxLength="60"></asp:TextBox>
-                            <%--<input type="email" id="txtEmail" runat="server" class="form-control" maxlength="60" required="required" />--%>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4 col-xs-8">
+                        <div class="col-md-2 col-xs-12">
                             Celular/Telefone<span class="instrucoes"> (preferencialmente celular)</span>
                         </div>
-                        <div class="col-md-8 col-xs-12">
+                        <div class="col-md-3 col-xs-12">
+                            <asp:TextBox ID="txtTelefone" runat="server" CssClass="form-control" MaxLength="15"></asp:TextBox>
+                        </div>
+                    </div>--%>
+
+                    <div class="row">
+                        <div class="col-md-4 col-xs-12">
+                            E-mail/Celular/Telefone<span class="instrucoes"> (preferencialmente celular)</span>
+                        </div>
+                        <div class="col-md-4 col-xs-6">
+                            <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" MaxLength="60"></asp:TextBox>
+                        </div>
+                        <div class="col-md-4 col-xs-6">
                             <asp:TextBox ID="txtTelefone" runat="server" CssClass="form-control" MaxLength="15"></asp:TextBox>
                         </div>
                     </div>
-                    <div class="row text-center">
-                        <div class="col-md-12 col-xs-12">
-                            <asp:Button ID="btnAvancar1" runat="server" Text="Avançar" CssClass="btn btn-primary" OnClick="btnAvancar1_Click" />
+                    <div class="row">
+                        <div class="col-md-4 col-xs-8">
+                            Sexo
+                        </div>
+                        <div class="col-md-8 col-xs-12">
+                            <asp:RadioButtonList ID="rblSexo" runat="server" CssClass="radio radio-primary">
+                                <asp:ListItem Value="M">Masculino</asp:ListItem>
+                                <asp:ListItem Value="F">Feminino</asp:ListItem>
+                            </asp:RadioButtonList>
                         </div>
                     </div>
-                </div>
-
-                <%-- PÁGINA 2 --%>
-                <div id="divPagina2" runat="server" visible="false">
                     <div class="row">
                         <div class="col-md-12 col-xs-12 text-left">
                             <h3><span class="glyphicon glyphicon-user"></span>Informações do polo</h3>
@@ -122,40 +144,6 @@
                         <div class="col-md-12 col-xs-12">
                             Polo
                         <asp:DropDownList ID="ddlPolo" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlPolo_SelectedIndexChanged"></asp:DropDownList>
-                        </div>
-                    </div>
-
-                    <div id="divInformacoesPolo" runat="server" visible="false">
-                        <div class="row">
-                            <div class="col-xs-12 col-md-12">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h4>Informações do Pólo</h4>
-                                    </div>
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th><strong>Cidade</strong></th>
-                                                <th><strong>Logradouro</strong></th>
-                                                <th><strong>Número</strong></th>
-                                                <th><strong>Bairro</strong></th>
-                                                <th><strong>CEP</strong></th>
-                                                <%--<th><strong>Telefone</strong></th>--%>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td><span id="spanCidade" runat="server"></span></td>
-                                                <td><span id="spanLogradouro" runat="server"></span></td>
-                                                <td><span id="spanNumero" runat="server"></span></td>
-                                                <td><span id="spanBairro" runat="server"></span></td>
-                                                <td><span id="spanCEP" runat="server"></span></td>
-                                                <%--<td><span id="spanTelefone" runat="server"></span></td>--%>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
                         </div>
                     </div>
 
@@ -187,16 +175,15 @@
                             </asp:DropDownList>
                         </div>
                     </div>
-
                     <div class="row text-center">
                         <div class="col-md-12 col-xs-12">
-                            <asp:Button ID="btnAvancar2" runat="server" Text="Avançar" CssClass="btn btn-primary" OnClick="btnAvancar2_Click" />
+                            <asp:Button ID="btnAvancar1" runat="server" Text="Avançar" CssClass="btn btn-primary" OnClick="btnAvancar1_Click" />
                         </div>
                     </div>
                 </div>
 
-                <%-- PÁGINA 3 --%>
-                <div id="divPagina3" runat="server" visible="false">
+                <%-- PÁGINA 2 --%>
+                <div id="divPagina2" runat="server" visible="false">
                     <asp:UpdatePanel ID="upCEP" runat="server">
                         <ContentTemplate>
                             <div id="divCepInvalido" style="display: none; right: 50px; top: 1230px; background-color: #fff; overflow: auto; z-index: 2; border: 1px solid #d9d9d9; border-radius: 10px; box-shadow: 12px 12px 5px #888888; padding: 10px;">
@@ -212,39 +199,39 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-2 col-xs-12">
-                                        CEP <span class="instrucoes">(Somente números)</span>
                                         <a id="linkCepInvalido" runat="server" visible="false" onclick="JavaScript:habilitaCampoCepInvalido('divCepInvalido');">
                                             <img id="img" src="img/cep_invalido.png" alt="CEP não encontrado" />
                                             CEP não encontrado
                                         </a>
                                     </div>
-                                    <div class="col-md-2 col-xs-12">
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4 col-xs-12">
+                                        CEP <span class="instrucoes">(Somente números)</span>
+                                    </div>
+                                    <div class="col-md-6 col-xs-12">
                                         <asp:TextBox ID="txtCEP" runat="server" CssClass="form-control" MaxLength="8" AutoPostBack="true" OnTextChanged="txtCEP_TextChanged"></asp:TextBox>
                                     </div>
-                                    <div class="col-md-1 col-xs-8">
-                                        Endereço
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4 col-xs-12">
+                                        Endereço/Número
                                     </div>
-                                    <div class="col-md-5 col-xs-12">
+                                    <div class="col-md-7 col-xs-7">
                                         <asp:TextBox ID="txtEndereco" runat="server" CssClass="form-control" MaxLength="100"></asp:TextBox>
                                     </div>
-                                    <div class="col-md-1 col-xs-8">
-                                        Número
-                                    </div>
-                                    <div class="col-md-1 col-xs-12">
+                                    <div class="col-md-1 col-xs-5">
                                         <asp:TextBox ID="txtNumero" runat="server" CssClass="form-control" MaxLength="8"></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-2 col-xs-8">
-                                        Complemento
+                                    <div class="col-md-4 col-xs-12">
+                                        Bairro/Complemento
                                     </div>
-                                    <div class="col-md-2 col-xs-12">
+                                    <div class="col-md-4 col-xs-7">
                                         <asp:TextBox ID="txtComplemento" runat="server" CssClass="form-control" MaxLength="50"></asp:TextBox>
                                     </div>
-                                    <div class="col-md-1 col-xs-8">
-                                        Bairro
-                                    </div>
-                                    <div class="col-md-5 col-xs-12">
+                                    <div class="col-md-4 col-xs-5">
                                         <asp:TextBox ID="txtBairro" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
                                     </div>
                                 </div>
@@ -256,15 +243,56 @@
                         </ContentTemplate>
                     </asp:UpdatePanel>
 
+                    <div class="row">
+                        <div class="col-md-4 col-xs-12">
+                            Ensino Médio
+                        </div>
+                        <div class="col-md-3 col-xs-12">
+                            <asp:DropDownList ID="ddlEscolaridade" runat="server" CssClass="form-control">
+                                <asp:ListItem Value="">Selecione</asp:ListItem>
+                                <asp:ListItem Value="6">Incompleto</asp:ListItem>
+                                <asp:ListItem Value="7">Completo</asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
+                    </div>
+
+                    <%--<div class="row text-center">
+                        <div class="col-md-12 col-xs-12">
+                            <asp:Button ID="btnAvancar2" runat="server" Text="Avançar" CssClass="btn btn-primary" OnClick="btnAvancar2_Click" />
+                        </div>
+                    </div>--%>
+
+                    <div class="blocoDeclaracao">
+                        <div class="row">
+                            <div class="col-md-12 col-xs-12">
+                                <p class="declaracao">
+                                    <span class="glyphicon glyphicon-check" aria-hidden="true"></span>Declaro a veracidade das informações prestadas e de estar ciente das normas do Vestibular  
+                        <asp:Label ID="lblAnoVestibular" runat="server"></asp:Label>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12 text-center">
+                            <asp:Button ID="btnInscrever" runat="server" Text="Efetuar inscrição" CssClass="btn btn-primary" OnClick="btnInscrever_Click"></asp:Button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <%-- PÁGINA 3 --%>
+                <%--<div id="divPagina3" runat="server" visible="false">
+
+
                     <div class="row text-center">
                         <div class="col-md-12 col-xs-12">
                             <asp:Button ID="btnAvancar3" runat="server" Text="Avançar" CssClass="btn btn-primary" OnClick="btnAvancar3_Click" />
                         </div>
                     </div>
-                </div>
+                </div>--%>
 
                 <%-- PÁGINA 4 --%>
-                <div id="divPagina4" runat="server" visible="false">
+                <%--<div id="divPagina4" runat="server" visible="false">
                     <div class="row">
                         <div class="col-md-12 col-xs-12 text-left">
                             <h3><span class="glyphicon glyphicon-user"></span>Informações adicionais</h3>
@@ -309,18 +337,7 @@
                                 <asp:ListItem Value="50">Outra</asp:ListItem>
                             </asp:DropDownList>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-2 col-xs-8">
-                            Sexo
-                        </div>
-                        <div class="col-md-10 col-xs-12">
-                            <asp:RadioButtonList ID="rblSexo" runat="server" CssClass="radio radio-primary">
-                                <asp:ListItem Value="M">Masculino</asp:ListItem>
-                                <asp:ListItem Value="F">Feminino</asp:ListItem>
-                            </asp:RadioButtonList>
-                        </div>
-                    </div>
+                    </div> 
                     <div class="row">
                         <div class="col-md-2 col-xs-8">
                             Canhoto
@@ -387,10 +404,10 @@
                             <asp:Button ID="btnAvancar4" runat="server" Text="Avançar" CssClass="btn btn-primary" OnClick="btnAvancar4_Click" />
                         </div>
                     </div>
-                </div>
+                </div>--%>
 
                 <%-- PÁGINA 5 --%>
-                <div id="divPagina5" runat="server" visible="false">
+                <%--<div id="divPagina5" runat="server" visible="false">
                     <asp:UpdatePanel ID="upEscolaridade" runat="server">
                         <ContentTemplate>
                             <div class="row">
@@ -456,96 +473,80 @@
                             <asp:Button ID="btnAvancar5" runat="server" Text="Avançar" CssClass="btn btn-primary" OnClick="btnAvancar5_Click" />
                         </div>
                     </div>
-                </div>
+                </div>--%>
 
 
-                <div id="divPagina6" runat="server" visible="false">
+                <%--<div id="divPagina6" runat="server" visible="false">
                     <div class="row">
                         <div class="col-md-12 col-xs-12">
                             <h3><span class="glyphicon glyphicon-time"></span>Indique seus dias e períodos disponíveis</h3>
                         </div>
                     </div>
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th><strong>Segunda-feira</strong></th>
-                                        <th><strong>Terça-Feira</strong></th>
-                                        <th><strong>Quarta-Feira</strong></th>
-                                        <th><strong>Quinta-Feira</strong></th>
-                                        <th><strong>Sexta-Feira</strong></th>
-                                        <th><strong>Sábado</strong></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <asp:CheckBoxList ID="cbSegunda" runat="server">
-                                                <asp:ListItem>Manhã</asp:ListItem>
-                                                <asp:ListItem>Tarde</asp:ListItem>
-                                                <asp:ListItem>Noite</asp:ListItem>
-                                            </asp:CheckBoxList>
-                                        </td>
-                                        <td>
-                                            <asp:CheckBoxList ID="cbTerca" runat="server">
-                                                <asp:ListItem>Manhã</asp:ListItem>
-                                                <asp:ListItem>Tarde</asp:ListItem>
-                                                <asp:ListItem>Noite</asp:ListItem>
-                                            </asp:CheckBoxList></td>
-                                        <td>
-                                            <asp:CheckBoxList ID="cbQuarta" runat="server">
-                                                <asp:ListItem>Manhã</asp:ListItem>
-                                                <asp:ListItem>Tarde</asp:ListItem>
-                                                <asp:ListItem>Noite</asp:ListItem>
-                                            </asp:CheckBoxList></td>
-                                        <td>
-                                            <asp:CheckBoxList ID="cbSexta" runat="server">
-                                                <asp:ListItem>Manhã</asp:ListItem>
-                                                <asp:ListItem>Tarde</asp:ListItem>
-                                                <asp:ListItem>Noite</asp:ListItem>
-                                            </asp:CheckBoxList></td>
-                                        <td>
-                                            <asp:CheckBoxList ID="cbQuinta" runat="server">
-                                                <asp:ListItem>Manhã</asp:ListItem>
-                                                <asp:ListItem>Tarde</asp:ListItem>
-                                                <asp:ListItem>Noite</asp:ListItem>
-                                            </asp:CheckBoxList></td>
-                                        <td>
-                                            <asp:CheckBoxList ID="cbSabado" runat="server">
-                                                <asp:ListItem>Manhã</asp:ListItem>
-                                                <asp:ListItem>Tarde</asp:ListItem>
-                                            </asp:CheckBoxList></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th><strong>Segunda-feira</strong></th>
+                                    <th><strong>Terça-Feira</strong></th>
+                                    <th><strong>Quarta-Feira</strong></th>
+                                    <th><strong>Quinta-Feira</strong></th>
+                                    <th><strong>Sexta-Feira</strong></th>
+                                    <th><strong>Sábado</strong></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <asp:CheckBoxList ID="cbSegunda" runat="server">
+                                            <asp:ListItem>Manhã</asp:ListItem>
+                                            <asp:ListItem>Tarde</asp:ListItem>
+                                            <asp:ListItem>Noite</asp:ListItem>
+                                        </asp:CheckBoxList>
+                                    </td>
+                                    <td>
+                                        <asp:CheckBoxList ID="cbTerca" runat="server">
+                                            <asp:ListItem>Manhã</asp:ListItem>
+                                            <asp:ListItem>Tarde</asp:ListItem>
+                                            <asp:ListItem>Noite</asp:ListItem>
+                                        </asp:CheckBoxList></td>
+                                    <td>
+                                        <asp:CheckBoxList ID="cbQuarta" runat="server">
+                                            <asp:ListItem>Manhã</asp:ListItem>
+                                            <asp:ListItem>Tarde</asp:ListItem>
+                                            <asp:ListItem>Noite</asp:ListItem>
+                                        </asp:CheckBoxList></td>
+                                    <td>
+                                        <asp:CheckBoxList ID="cbSexta" runat="server">
+                                            <asp:ListItem>Manhã</asp:ListItem>
+                                            <asp:ListItem>Tarde</asp:ListItem>
+                                            <asp:ListItem>Noite</asp:ListItem>
+                                        </asp:CheckBoxList></td>
+                                    <td>
+                                        <asp:CheckBoxList ID="cbQuinta" runat="server">
+                                            <asp:ListItem>Manhã</asp:ListItem>
+                                            <asp:ListItem>Tarde</asp:ListItem>
+                                            <asp:ListItem>Noite</asp:ListItem>
+                                        </asp:CheckBoxList></td>
+                                    <td>
+                                        <asp:CheckBoxList ID="cbSabado" runat="server">
+                                            <asp:ListItem>Manhã</asp:ListItem>
+                                            <asp:ListItem>Tarde</asp:ListItem>
+                                        </asp:CheckBoxList></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>--%>
+            </div>
+        </div>
 
-                    <div class="blocoDeclaracao">
-                        <div class="row">
-                            <div class="col-md-12 col-xs-12">
-                                <p class="declaracao">
-                                    <span class="glyphicon glyphicon-check" aria-hidden="true"></span>Declaro a veracidade das informações prestadas e de estar ciente das normas do Vestibular  
-                        <asp:Label ID="lblAnoVestibular" runat="server"></asp:Label>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12 col-xs-12 text-center">
-                            <asp:Button ID="btnInscrever" runat="server" Text="Efetuar inscrição" CssClass="btn btn-primary" OnClick="btnInscrever_Click"></asp:Button>
-                        </div>
-                    </div>
+        <div class="row">
+            <div class="col-md-12 col-xs-12">
+                <div class="alert alert-danger" role="alert" runat="server" id="divMsg" visible="false">
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    <strong>Atenção! </strong><span id="spanMsg" runat="server"></span>
                 </div>
             </div>
-
-            <div class="row">
-                <div class="col-md-12 col-xs-12">
-                    <div class="alert alert-danger" role="alert" runat="server" id="divMsg" visible="false">
-                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                        <strong>Atenção! </strong><span id="spanMsg" runat="server"></span>
-                    </div>
-                </div>
-            </div>
+        </div>
         </div>
     </form>
 </body>
