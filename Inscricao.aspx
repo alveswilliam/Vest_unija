@@ -38,8 +38,11 @@
             </div>
 
             <div class="row">
-                <div class="col-md-12 col-xs-12 text-left">
+                <div class="col-md-6 col-xs-6 text-left">
                     <h3><span class="titulo">Formulário de Inscrição</span></h3>
+                </div>
+                <div class="col-md-6 col-xs-6 text-right">
+                    <h4><span id="spanPagina" runat="server"></span></h4>
                 </div>
             </div>
 
