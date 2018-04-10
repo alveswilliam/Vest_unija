@@ -1,0 +1,209 @@
+﻿@font-face {
+    font-family: "NewsCycle-Regular";
+    src:url("../fonts/NewsCycle-Regular.ttf");
+}
+
+body {
+    background-image:url(../img/background.png);
+    font-family: NewsCycle-Regular;
+    font-size: large;
+}
+
+form {
+    background: #fff;
+}
+
+.row {
+    margin: 0 auto;
+	padding: 3px 0;
+}
+
+.titulo {
+    font-family: NewsCycle-Regular;
+}
+
+.bloco {
+    padding: 10px 20px;
+    border: 1px solid #d9d9d9;
+    border-radius: 5px;
+    margin: 0 10px 10px 10px;
+}
+
+.textoItemEdital {
+    background-color: #668ba7;
+    padding: 10px;
+    text-align: justify;
+    margin-top: 10px;
+    color: #fff;
+}
+
+p::first-letter {
+    font-size: x-large;
+}
+
+.blocoDeclaracao {
+    margin-top: 60px;
+}
+
+.declaracao {
+    padding: 5px;
+    text-align: center;
+}
+
+span {
+    margin-right: 5px;
+}
+
+.instrucoes {
+    font-size: small;
+}
+
+.boleto {
+    color: #1b4564;
+    text-decoration: none;
+}
+
+.boleto:hover {
+    text-decoration: underline;
+}
+
+.divBoleto {
+    background-color: #c8c6c6;
+    border-radius: 100%;
+    border: 2px dotted #ff6a00;
+    font-size: medium;
+    text-align: center;
+    width: 100px;
+    height: 100px;
+    padding-top: 12px;
+    margin-left: 10px;
+    float: left;
+}
+
+.divBoleto:hover {
+    background-color: #d9d9d9;
+}
+
+#divResponsavel, #divNecessidadeEspecial, #divOutraLingua, #divEnqueteQual, #divEmpresa , #divIndicacaoAmigo, #divNumeroEnem {
+    display: none;
+}
+
+.espacamento {
+    margin-bottom: 50px;
+}
+
+#divInformacao {
+    background-color: #1b4564;
+    color: #fff;
+    height: auto;
+    padding: 30px;
+}
+
+#divMsg {
+    font-size: medium;
+}
+
+.tamanhoBoleto {
+    width: 730px;
+}
+
+.dropdownlist {
+    height: 36px;
+}
+
+#gvInscricoes {
+    margin-top: 20px;
+}
+
+#topoBanner {
+    padding-top: 0;
+}
+
+#divEspacoBanner {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+/*=-=-= Tira o negrito do checkbox =-=-=*/
+label {
+    font-weight: normal !important;
+}
+
+.tamanho {
+    font-size: larger;
+}
+
+.resultado {
+    margin-top: 30px;
+    padding: 10px;
+    border: 1px solid #c8c6c6;
+    border-radius: 5px;
+}
+
+/*=-=-=-= css Controle Marketing - Painel.aspx =-=-=-=*/
+
+.divBotaoPainel {
+    background-color: #152f4e;
+    border-radius: 100%;
+    /*border: 2px dotted #ff6a00;*/
+    color: #fff;
+    font-size: medium;
+    text-align: center;
+    width: 100px;
+    height: 100px;
+    padding-top: 12px;
+    margin-left: 10px;
+    float: left;
+}
+
+.divBotaoPainel:hover {
+    /*background-color: #c8c6c6;*/
+    background-color: #2f4d71;
+}
+
+.link, link:hover {
+    color: #fff;
+}
+
+.link:visited {
+    color: #c8c6c6;
+}
+
+#divBuscaData, #divBuscaCPF, #divTipoBusca {
+    display: none;
+}
+
+.busca {
+    border: 1px solid #d9d9d9;
+    border-radius: 5px;
+    background-color: #ededed;
+}
+
+.painel {
+    padding: 3px;
+    background-color: #d9d9d9;
+}
+
+.painel .paragrafo {
+    font-size: medium;
+}
+
+.painel .paragrafo::first-letter {
+    font-size: medium;
+}
+
+/*Login.aspx*/
+
+.esqueceu {
+    font-family: Tahoma;
+    font-size: xx-small;
+    font-weight: bold;
+    color: #000000;
+}
+
+/*=-=-=-= css Controle Marketing - Listas.aspx =-=-=-=*/
+.linha {
+    background-color: #e8e8e8;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
