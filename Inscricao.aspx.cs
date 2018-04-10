@@ -56,6 +56,7 @@ public partial class Inscricao : System.Web.UI.Page
         {
             lblAnoVestibular.Text = "2018";
             divBanner.InnerHtml = "<img src=\"img/banner.jpg\" width=\"1140\" height=\"150\" border=\"0\" class=\"img-responsive\" />";
+            spanPagina.InnerText = "Página 1/2";
         }
         catch (Exception ex)
         {
@@ -243,6 +244,7 @@ public partial class Inscricao : System.Web.UI.Page
             if (ValidaCamposPagina1())
             {
                 LimparMensagem();
+                spanPagina.InnerText = "Página 2/2";
 
                 ProcSel procsel = new ProcSel();
 
