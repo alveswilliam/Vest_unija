@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CPConnect;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -43,36 +44,47 @@ public partial class Administracao_Login : System.Web.UI.Page
     {
         try
         {
-            if (txtUsuario.Value == "controlegeral" && txtSenha.Value == "controlegeral")
-            {
-                Session["codusuario"] = txtUsuario.Value;
+            //LoginClass login = new LoginClass();
+            //object a, b, c;
+            //int erro_i = 0;
+            //string erro_s = null;
 
-                Response.Redirect("Painel.aspx", false);
-            }
-            else
-            {
-                Polo polo = new Polo
+            //b = login.ErrorCode;
+            //c = login.ErrorMessage;
+            //a = null;
+
+            ////método utilizado para conexão com RM através de ADO
+            //login.GetConnectionParams(true, "CORPORERM", txtUsuario.Value.ToString(), txtSenha.Value.ToString(), "F", ref a, ref erro_i, ref erro_s);
+            ////método utilizado para verificação do usuário dentro do RM
+            //login.GetAccessParams(true, "CORPORERM", txtUsuario.Value.ToString(), txtSenha.Value.ToString(), "F", ref a, ref b, ref c);
+            ////O código '0' indica que a conexão foi efetuada com sucesso.
+
+            //if (b.ToString() == "0" || b.ToString() == "11" || b.ToString() == "10" || b.ToString() == "6")
+            //{
+                //Usuário existe e senha OK, mas sem permissão de acesso ao corpore.net
+
+                DALAdm dal = new DALAdm();
+                ProcSel procsel = new ProcSel();
+
+                Usuario usuario = new Usuario()
                 {
-                    Usuario = txtUsuario.Value
+                    CodColigada = 1,
+                    Codigo = txtUsuario.Value,
+                    CodFilial = procsel.CodFilial
                 };
 
-                DAL dal = new DAL();
-                dal.ValidaUsuario(polo);
-
-                if (txtSenha.Value == polo.Senha)
+                if (dal.ValidaUsuario(usuario))
                 {
-                    Session["codpolo"] = polo.CodPolo;
-                    Session["codusuario"] = txtUsuario.Value;
+                    Session["usuario"] = usuario;
 
                     Response.Redirect("Painel.aspx", false);
                 }
-                else
-                {
-                    divMsg.Visible = true;
-                    spanMsg.InnerText = "Usuário ou senha inválidos.";
-                }
-            }
-
+            //}
+            //else
+            //{
+            //    divMsg.Visible = true;
+            //    spanMsg.InnerText = "Usuário ou senha incorretos. Por favor, tente novamente.";
+            //}
         }
         catch (Exception ex)
         {

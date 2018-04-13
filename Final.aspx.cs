@@ -27,7 +27,7 @@ public partial class Final : System.Web.UI.Page
         {
             //Page.Header.Title = "Vestibular UNIJÁ 2018";
             divBanner.InnerHtml = "<img src=\"img/banner.jpg\" width=\"1140\" height=\"150\" border=\"0\" class=\"img-responsive\" />";
-            linkNova.HRef = "http://inscricao.unija.edu.br/Inscricao.aspx";
+            linkNova.HRef = "http://webserver.faj.br/vestibularunijateste/Inscricao.aspx";
         }
         catch (Exception ex)
         {

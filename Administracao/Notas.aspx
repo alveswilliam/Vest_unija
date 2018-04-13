@@ -1,17 +1,17 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Painel.aspx.cs" Inherits="Administracao_Painel" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Notas.aspx.cs" Inherits="Administracao_Notas" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>Vestibular UniJÁ 2018 - Lançamento de Notas</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
     <link href="../css/estilo.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <div class="container">
-        <form id="form1" runat="server">
-            <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+    <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+        <div class="container">
             <div class="page-header">
                 <div id="topoBanner" class="row">
                     <div class="col-md-12 col-xs-12" id="divEspacoBanner">
@@ -28,6 +28,7 @@
                     <div>
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="#"><span class="glyphicon glyphicon-user"></span><span id="spanUsuario" runat="server"></span></a></li>
+                            <li><a href="Painel.aspx"><span class="glyphicon glyphicon-home"></span>Menu principal</a></li>
                             <li><a href="Login.aspx"><span class="glyphicon glyphicon-log-out"></span>Sair</a></li>
                         </ul>
                     </div>
@@ -39,36 +40,29 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-3 col-xs-6" id="botaoNotas" runat="server">
-                    <div class="divBotaoPainel">
-                        <a href="Notas.aspx" class="link">Notas</a>
-                    </div>
+                <div class="col-md-12 col-xs-12">
+                    <h3>Lançamento de notas - <span id="spanPolo" runat="server"></span></h3>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12 col-xs-12">
-                    <h3>Informações dos candidatos - <span id="spanPolo" runat="server"></span></h3>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 col-xs-12">
-                    <asp:Button ID="btnVisualizar" runat="server" CssClass="btn btn-primary" AutoPostBack="true" Text="Visualizar inscritos" OnClick="btnVisualizar_Click"></asp:Button>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 col-xs-12">
-                    <asp:UpdatePanel ID="upTabelaCandidatos" runat="server">
+                    <asp:UpdatePanel ID="upCandidatos" runat="server">
                         <ContentTemplate>
-                            <asp:GridView ID="gvInscritos" runat="server" AutoGenerateColumns="false" CssClass="table table-hover" ShowHeaderWhenEmpty="true" EmptyDataText="Não há candidatos inscritos">
+                            <asp:GridView ID="gvNotaCandidatos" runat="server" AutoGenerateColumns="false" CssClass="table table table-hover" ShowHeaderWhenEmpty="true" EmptyDataText="Não há candidatos para lançamento de nota" OnRowUpdating="gvNotaCandidatos_RowUpdating" OnRowEditing="gvNotaCandidatos_RowEditing" OnRowCancelingEdit="gvNotaCandidatos_RowCancelingEdit">
                                 <Columns>
-                                    <asp:BoundField DataField="CODIGOINSCRICAO" HeaderText="Cód. Inscrição" SortExpression="CODIGOINSCRICAO" ItemStyle-HorizontalAlign="Center" />
-                                    <asp:BoundField DataField="NOME" HeaderText="Candidato" SortExpression="NOME" ItemStyle-HorizontalAlign="Center" />
-                                    <asp:BoundField DataField="TELEFONE1" HeaderText="Telefone" SortExpression="TELEFONE1" ItemStyle-HorizontalAlign="Center" />
-                                    <asp:BoundField DataField="CPF" HeaderText="CPF" SortExpression="CPF" ItemStyle-HorizontalAlign="Center" />
-                                    <asp:BoundField DataField="CIDADE" HeaderText="Cidade" SortExpression="CIDADE" ItemStyle-HorizontalAlign="Center" />
-                                    <asp:BoundField DataField="EMAIL" HeaderText="E-mail" SortExpression="EMAIL" ItemStyle-HorizontalAlign="Center" />
-                                    <asp:BoundField DataField="POLO" HeaderText="Polo" SortExpression="POLO" ItemStyle-HorizontalAlign="Center" />
+                                    <asp:BoundField DataField="CODIGOINSCRICAO" HeaderText="Inscrição" SortExpression="CODIGOINSCRICAO" ReadOnly="True"></asp:BoundField>
+                                    <asp:BoundField DataField="NOME" HeaderText="Nome" SortExpression="NOME" ReadOnly="True"></asp:BoundField>
+                                    <asp:TemplateField HeaderText="Nota" SortExpression="NOTA">
+                                        <EditItemTemplate>
+                                            <asp:TextBox ID="txtNota" runat="server" Text='<%#Bind("NOTATOTAL") %>'></asp:TextBox>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblNota" runat="server" Text='<%#Bind("NOTATOTAL") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:CommandField ButtonType="Button" ShowEditButton="true" UpdateText="Lançar" CancelText="Cancelar" EditText="Editar" ControlStyle-CssClass="btn btn-primary" />
                                 </Columns>
+                                <HeaderStyle BackColor="#0a385a" Font-Bold="True" ForeColor="White" />
                             </asp:GridView>
                         </ContentTemplate>
                     </asp:UpdatePanel>
@@ -82,8 +76,9 @@
                     </div>
                 </div>
             </div>
-        </form>
-    </div>
+            <br />
+        </div>
+    </form>
 </body>
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.2.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>

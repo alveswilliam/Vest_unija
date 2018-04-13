@@ -19,7 +19,7 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-12 col-md-12 text-center">
-                        <h2>Vestibular Continuado - Controle Administrativo</h2>
+                        <h2>Vestibular UniJÁ - Controle Administrativo</h2>
                     </div>
                 </div>
             </div>
